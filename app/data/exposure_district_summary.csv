@@ -1,0 +1,6 @@
+indicator,exposed_ha,exposed_pct_of_district_cropland,assessed_pct_of_district_cropland,blocks_flagged,blocks_assessed
+Rainfall deficit,22518.45,26.422755641916506,99.99999999999999,2,9
+Long dry spell,0.0,0.0,99.99999999999999,0,9
+Heat anomaly,85223.7,99.99999999999999,99.99999999999999,9,9
+Vegetation / moisture below usual,0.0,0.0,0.0,0,0
+Rainfall deficit + vegetation stress,0.0,0.0,0.0,0,0

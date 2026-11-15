@@ -1,0 +1,10 @@
+unit,screening_class,flag_rain,flag_dry,flag_heat,flag_veg,vci,cropland_ha,share_of_district_cropland_pct,flag_rain_veg
+Radhapuram,Rainfall stress only (vegetation not assessed),1.0,0.0,1.0,,,6824.88,8.008194903530354,
+Nanguneri,No stress signal (vegetation not assessed),0.0,0.0,1.0,,,15675.93,18.393862270706386,
+Manur,Rainfall stress only (vegetation not assessed),1.0,0.0,1.0,,,15693.57,18.41456073838615,
+Palayamkottai,No stress signal (vegetation not assessed),0.0,0.0,1.0,,,10163.789999999999,11.926013538487531,
+Pappakudi,No stress signal (vegetation not assessed),0.0,0.0,1.0,,,7418.25,8.704444890329802,
+Valliyoor,No stress signal (vegetation not assessed),0.0,0.0,1.0,,,9146.97,10.732894722946783,
+Kalakadu,No stress signal (vegetation not assessed),0.0,0.0,1.0,,,8601.3,10.092615082424253,
+Cheranmahadevi,No stress signal (vegetation not assessed),0.0,0.0,1.0,,,7173.2699999999995,8.416989640205717,
+Ambasamudram,No stress signal (vegetation not assessed),0.0,0.0,1.0,,,4525.74,5.3104242129830075,

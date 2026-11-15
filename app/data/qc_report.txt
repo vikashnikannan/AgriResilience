@@ -1,0 +1,59 @@
+HLS rows: 954; low-coverage (<20.0% of cropland) set to NaN: 35
+
+Blocks with zero/missing cropland pixels: []
+
+Median valid coverage % by block:
+unit
+Ambasamudram      97.9
+Cheranmahadevi    99.1
+Kalakadu          99.3
+Manur             99.5
+Nanguneri         99.0
+Palayamkottai     99.2
+Pappakudi         99.8
+Radhapuram        99.0
+Valliyoor         98.3
+
+GPM rows: 1278; months below 98% completeness: 0; lowest completeness 0.992; sources: {'IMERG_V07_30min': 1278}
+
+Months with any missing 30-min images (rain sums not rescaled):
+  month  completeness
+2026-06      0.998611
+2026-10      0.991935
+
+HLS images per month (whole study area), summary by year:
+       min  median  max
+month                  
+2018    51   154.0  219
+2019    56   169.5  223
+2020    16   131.0  225
+2021     8    17.5   20
+2022    16    92.5  232
+2023    56   158.0  210
+2024    73   178.5  221
+2025    12    21.5  205
+2026    16    20.0   24
+
+POWER missing fraction:
+T2M            0.0
+T2M_MAX        0.0
+T2M_MIN        0.0
+PRECTOTCORR    0.0
+
+POWER: 2 distinct daily T2M series across 9 blocks
+
+POWER distinct request points: 9 for 9 blocks (the underlying grid is coarser, so blocks may share a grid cell)
+
+Dry spells computed from POWER daily PRECTOTCORR (dry day < 1.0 mm; alternative < 2.5 mm). POWER grid is ~0.5 deg, so blocks may share values.
+
+HLS quality mask used for the raw download: bits1-4 only (cloud, adjacent, shadow, snow/ice) - legacy download without water/aerosol masking. Re-download HLS with config.HLS_MASK_WATER=True to apply the water bit.
+
+Master table: (432, 22)
+
+Season-years usable (rain / temp / veg):
+        rain_ok  temp_ok  veg_ok
+season                          
+NEM          99       99      69
+SWM         108      108      81
+Summer      108      108      81
+Winter      108      108      81

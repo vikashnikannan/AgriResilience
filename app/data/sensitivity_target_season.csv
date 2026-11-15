@@ -1,0 +1,10 @@
+unit,base,equal,mc_rank_mean,mc_rank_min,mc_rank_max,mc_share_top3
+Radhapuram,1.0,1.0,1.699,1.0,3.0,1.0
+Nanguneri,2.0,2.0,1.757,1.0,4.0,0.989
+Manur,3.0,3.0,3.578,2.0,6.0,0.597
+Palayamkottai,4.0,4.0,3.995,3.0,5.0,0.017
+Pappakudi,5.0,6.0,5.705,5.0,6.0,0.0
+Valliyoor,6.0,7.0,6.555,5.0,7.0,0.0
+Kalakadu,7.0,5.0,4.855,2.0,8.0,0.397
+Cheranmahadevi,8.0,8.0,7.856,7.0,8.0,0.0
+Ambasamudram,9.0,9.0,9.0,9.0,9.0,0.0

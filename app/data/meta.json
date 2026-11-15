@@ -1,0 +1,50 @@
+{
+ "generated_utc": "2026-11-15 17:09",
+ "target_year": 2026,
+ "target_season": "SWM",
+ "weights": {
+  "rainfall_stress": 0.35,
+  "temperature_stress": 0.2,
+  "vegetation_stress": 0.25,
+  "moisture_stress": 0.2
+ },
+ "seasons": {
+  "Winter": [
+   1,
+   2
+  ],
+  "Summer": [
+   3,
+   4,
+   5
+  ],
+  "SWM": [
+   6,
+   7,
+   8,
+   9
+  ],
+  "NEM": [
+   10,
+   11,
+   12
+  ]
+ },
+ "clim_baseline": [
+  2015,
+  2024
+ ],
+ "veg_baseline": [
+  2018,
+  2024
+ ],
+ "gpm_mode": "halfhourly",
+ "min_distinct": 4,
+ "hls_images_target": 20.75,
+ "hls_images_baseline": 176.96428571428572,
+ "rain_deficit_pct": 10.0,
+ "stress_z": 1.0,
+ "dry_day_mm": 1.0,
+ "ha_per_pixel": 0.09,
+ "temp_distinct_values": 2
+}
