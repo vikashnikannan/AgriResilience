@@ -1,0 +1,9 @@
+# One environment for the whole project (created automatically as .venv inside this folder)
+streamlit>=1.35
+pandas>=2.0
+numpy>=1.24
+plotly>=5.18
+matplotlib>=3.7
+requests>=2.31
+earthengine-api>=0.1.390
+pillow>=10.0

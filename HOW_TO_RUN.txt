@@ -1,0 +1,99 @@
+AGRIRESILIENCE - HOW TO RUN
+===========================
+Tirunelveli agricultural climate-stress screening (NASA HLS, GPM IMERG, POWER) + Streamlit dashboard.
+This is a screening prototype, not a crop-yield model and not an official drought declaration.
+
+WHAT YOU NEED
+-------------
+* Python 3.10 or newer (python.org). On Windows tick "Add Python to PATH" in the installer.
+* Internet on the FIRST run only (to download the packages into the project's own environment).
+* A Google / Earth Engine account ONLY if you want to re-download raw data (optional, see part C).
+
+The environment lives INSIDE this folder (.venv). Nothing is installed globally, so it cannot
+disturb your other Python projects. Delete the .venv folder to remove it completely.
+
+
+A. QUICKEST WAY (everything, start to finish, one command)
+-----------------------------------------------------------
+1. Unzip the package anywhere (keep the folder structure).
+2. Open a terminal in the unzipped folder.
+     Windows:  double-click run_all.bat      (or in a terminal:  python run_all.py)
+     Mac/Linux:  ./run_all.sh                 (or:  python3 run_all.py)
+3. Wait. The first run creates .venv and installs packages (a few minutes). Then it runs:
+     02 preprocess -> 03 analysis -> 06 validation -> 05 export -> dashboard logic test -> manifest
+   and finally opens the dashboard at  http://localhost:8501   (Ctrl+C in the terminal stops it).
+
+Useful options (add after the command):
+     --no-app          run the pipeline and tests but do not start the dashboard
+     --ee              also run the Earth Engine steps (needs login, part C)
+     --ee-login        open the Earth Engine login first, then run everything
+     --selftest        also run the synthetic-data self-test
+     --recreate-venv   rebuild the environment from scratch
+
+To only create the environment without running anything:  setup_env.bat  (Windows) / ./setup_env.sh
+
+
+B. JUST OPEN THE DASHBOARD LATER
+--------------------------------
+Run run_all.bat / ./run_all.sh again (fast after the first time). Or, with the environment:
+     Windows:    .venv\Scripts\python -m streamlit run app\app.py
+     Mac/Linux:  .venv/bin/python -m streamlit run app/app.py
+The dashboard reads only app/data, so it needs no Earth Engine and no internet.
+
+
+C. OPTIONAL: RE-DOWNLOAD / REFRESH RAW DATA FROM EARTH ENGINE
+-------------------------------------------------------------
+1. Edit code/config.py if needed: PROJECT_ID, ASSET_ID (your block asset), date windows
+   (HLS_END, GPM_END, POWER_END, LAST_FULL_MONTH).
+2. Log in once:   python run_all.py --ee-login      (a browser window opens)
+3. Then:          python run_all.py --ee
+   This also runs 00 (inspect), 01 (download; resumable, safe to re-run), 01c (SoilGrids soil),
+   and 04 (latest 30-day rainfall, provisional).
+4. To apply the improved HLS quality mask (water bit) to the NASA HLS data you must re-download HLS:
+   move DATA/hls_monthly_by_unit_raw.csv elsewhere, then run with --ee. (The script refuses to mix
+   old and new masks in one file.) The shipped raw data used the older mask without the water bit;
+   this is stated in the QC and validation reports.
+
+
+D. OPTIONAL: ADD REFERENCE DATA TO STRENGTHEN VALIDATION (put files in DATA/reference/)
+---------------------------------------------------------------------------------------
+   imd_rainfall_monthly.csv     columns: unit,month,rain_mm       (month like 2024-07)
+   imd_temperature_monthly.csv  columns: unit,month,t2m
+   official_crop_area_ha.csv    columns: unit,area_ha
+   seasons.json                 your documented local crop-calendar seasons, e.g.
+                                {"Kharif": [6,7,8,9], "Rabi": [10,11,12,1]}
+Re-run run_all.py: 06_validation then computes bias / RMSE / correlation against IMD and compares the
+cropland mask with official area. Without these files the report says "unvalidated" (honest default).
+
+
+WHERE THINGS ARE
+----------------
+run_all.py            master script (environment -> pipeline -> tests -> dashboard)
+requirements.txt      packages for the project environment
+code/                 pipeline scripts: 00 inspect, 01 download, 01c soil, 02 preprocess, 03 analysis,
+                      04 latest rainfall, 05 export, 06 validation, config.py (all settings), selftest.py
+app/                  Streamlit dashboard (app.py, logic.py, data/)
+DATA/                 raw downloads (+ DATA/reference/ for your optional files)
+PREPROCESSED/         cleaned tables and QC report
+ANALYSIS/             results: acsi_*.csv, exposure_*.csv, validation_*, maps/charts, run_manifest.json
+docs/                 METHODOLOGY_COMPLIANCE.md (what is / is not implemented), CHANGES_AND_LIMITATIONS.md
+tests/                dashboard logic test
+
+
+TROUBLESHOOTING
+---------------
+* "python is not recognized": reinstall Python with "Add Python to PATH" ticked, or use  py -3 run_all.py
+* Packages fail to install: check internet, then  python run_all.py --recreate-venv
+* Port 8501 busy: close the other dashboard, or run streamlit with  --server.port 8502
+* "Earth Engine is not signed in": use  python run_all.py --ee-login ; check PROJECT_ID in code/config.py
+* Any step fails: the run stops and names the step; fix the message shown, then run again.
+* Results look different from your earlier version: ACVI is now called ACSI (Agricultural Climate Stress
+  Index) and its provisional weights follow the methodology (rain .35, temp .20, NDVI .25, NDMI .20).
+
+
+HONEST LIMITS (also shown in the dashboard)
+-------------------------------------------
+Season months are an assumed monsoon convention; thresholds and weights are design choices, not
+calibrated; cropland mask is a preliminary ESA WorldCover map; no irrigation / crop-calendar / IMD
+data are included unless you add them; temperature and dry spells come from a coarse 0.5-degree grid;
+SWM 2026 vegetation signal is flagged unreliable because far fewer HLS images were available.
