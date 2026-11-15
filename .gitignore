@@ -1,8 +1,11 @@
+﻿__pycache__/
+*.py[cod]
 .venv/
-__pycache__/
-*.pyc
+venv/
+.env
 DATA/
 PREPROCESSED/
 ANALYSIS/
-.streamlit/secrets.toml
-*service*account*.json
+.DS_Store
+.vscode/
+.idea/
